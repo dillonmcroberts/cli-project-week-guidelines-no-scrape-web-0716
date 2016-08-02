@@ -4,6 +4,7 @@ group "development" do
   gem "pry"
   gem "pry-nav"
   gem "nokogiri"
+  gem "httparty"
   # gem "JSON"
   #gem "open-uri"
 
