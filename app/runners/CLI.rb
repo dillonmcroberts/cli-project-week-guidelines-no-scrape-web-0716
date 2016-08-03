@@ -32,9 +32,8 @@ class ExampleCLI
     league_players = APIWrapper.new(url, search_term)
     
     puts "Thank you for your patience. I found this:"
+    league_players.sort
     
-    league_players.print_age
-    binding.pry
   end
 
   def help

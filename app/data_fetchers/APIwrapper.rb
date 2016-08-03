@@ -2,7 +2,7 @@ require "JSON"
 
 
 class APIWrapper
-  attr_accessor :url, :user_input, :league_selection, :all_competitions, :team_url, :all_teams, :players_url, :player_hash
+  attr_accessor :url, :user_input, :league_selection, :all_competitions, :team_url, :all_teams, :players_url, :player_hash, :sorted_age_hash
 
   
   def initialize(url,user_input)
@@ -55,6 +55,18 @@ class APIWrapper
       Team.all.each do |team|
         puts "The average age for #{team.name} is #{team.average_age}"
       end
+      sort
+  end
+
+  def sort
+    Team.determine_age
+    age_hash = {}
+    sorted_age_hash = {}
+    Team.all.each do |team|
+      age_hash[team.name] = team.average_age
+    end
+    sorted_age_hash =  age_hash.sort_by {|key,value| value}
+    sorted_age_hash.each {|k,v| puts "The average age of #{k} is #{v}"}
   end
 
 end
